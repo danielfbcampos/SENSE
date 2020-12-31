@@ -1,0 +1,4 @@
+device: /dev/ublox
+frame_id: ublox_gps 
+
+dynamic_model: sea 

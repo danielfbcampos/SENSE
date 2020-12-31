@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="mynteye">
+  <xacro:macro name="mynteye" params="*origin parent:=base_link">
+    <link name = "mynteye_base_frame">
+    <visual>
+      <origin xyz="0.0 -0.06 0.0" rpy="1.5707963 0 1.5707963" />
+      <geometry>
+        <mesh filename="package://transforms/models/sense/sensors/mynteye_description/mesh/D-0315.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+
+    <collision name="body">
+      <origin xyz="0.0 -0.06 0.0" rpy="1.5707963 0 1.5707963" />
+      <geometry>
+        <mesh filename="package://transforms/models/sense/sensors/mynteye_description/mesh/D-0315.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+    </link>
+    <link name = "mynteye_left_color_frame"/>
+    <link name = "mynteye_right_color_frame"/>
+    <link name = "mynteye_points_frame"/>
+
+    <joint name = "mynteye_mount_joint" type = "fixed">
+      <parent link = "${parent}"/>
+      <child  link = "mynteye_base_frame"/>
+      <xacro:insert_block name="origin" />
+    </joint>
+
+    <joint name = "joint_leftcam_to_base" type = "fixed">
+      <parent link = "mynteye_base_frame"/>
+      <child  link = "mynteye_left_color_frame"/>
+      <origin xyz = "0.0 0.0 0.0"
+        rpy = "-1.5707963 0 -1.5707963"/>
+    </joint>
+
+    <joint name = "joint_leftcam_to_rightcam" type = "fixed">
+      <parent link = "mynteye_left_color_frame"/>
+      <child  link = "mynteye_right_color_frame"/>
+      <origin xyz = "1.180524785791353e-1 4.265086062240856e-4  -3.3660556260315907e-4"
+        rpy = "-0.0109231 0.0039398 -0.001398"/>
+    </joint>
+
+    <joint name = "joint_points_frame_to_leftcam" type = "fixed">
+      <parent link = "mynteye_left_color_frame"/>
+      <child  link = "mynteye_points_frame"/>
+      <origin xyz = "0 0 0"
+        rpy = "0 0 0"/>
+    </joint>
+  </xacro:macro>
+</robot>

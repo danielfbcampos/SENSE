@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="cfg_file" default="$(find rc)/cfg/rc.yaml" />
+
+    <!--- Run rc cras node -->
+    <node pkg="rc" type="rc.py" name="rc" output="screen" respawn="true">
+      <rosparam command="load" file="$(arg cfg_file)" />
+    </node>
+
+</launch>

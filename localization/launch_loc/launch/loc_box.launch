@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find xsens_driver)/launch/xsens_driver.launch"/>
+    <node pkg="xsens_driver" type="mtdevice.py" name="xsens_driver" args="-c aa200,wr200,oe200" output="screen">
+
+    <include file="$(find swiftnav_piksi)/launch/swiftnav_piksi.launch"/>
+    <include file="$(find ekf_localization)/launch/sense_localization.launch" />
+</launch>

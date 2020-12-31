@@ -1,0 +1,13 @@
+##< TF Frame names
+# frame_world (String) - Name of earth frame. utm usually.
+frame_world: "utm"
+# frame_odom (String) - Name of odometry frame. odom in real boat, world in gazebo (already handled) 
+frame_odom: "world"
+# frame_robot (String) - Name of robot projection frame. base_footprint usually.
+frame_robot: "base_link"
+
+# max_rpm (Int) - Maximum RPM velocity for each wheel allowed. MUST BE EQUAL TO THE ROBOTEQ FIRMWARE CONFIGURATION!  
+max_rpm: 1000
+
+# global_verbose (Bool) - Flag to turn on or off all Debug outputs (topics, services, couts...)  
+global_verbose: true

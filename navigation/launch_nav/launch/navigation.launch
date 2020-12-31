@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="velocity_manager" default="true" />
+  <arg name="use_rc" default="true" />  
+  <arg name="use_nav_sensors" default="true" /> 
+
+  <arg name="cfg_file" default="$(find launch_pkg)/cfg/global_parameters.yaml" />
+  <rosparam command="load" file="$(arg cfg_file)" />
+
+
+  <include file="$(find roboteq_driver)/launch/sense.launch" />
+    
+  <include file="$(find transforms)/launch/tfs_sense.launch" />
+
+  <!-- If use_nav_sensors is true -->
+  <group if="$(arg use_nav_sensors)">
+    <include file="$(find ublox_gps)/launch/ublox_device.launch" />
+    <include file="$(find razor_imu_9dof)/launch/razor-pub.launch" />
+    <include file="$(find nav_ekf_localization)/launch/sense_localization.launch" />
+  </group>
+
+  <!-- If velocity manager is true -->
+  <group if="$(arg velocity_manager)">
+    <include file="$(find velocity_manager)/launch/twist2thrust.launch" />
+    <include file="$(find velocity_manager)/launch/velocity_priority.launch" />
+  </group>
+
+  <!-- If use_rc is true -->
+  <group if="$(arg use_rc)">
+    <include file="$(find rc)/launch/rc.launch" />
+  </group>
+</launch>

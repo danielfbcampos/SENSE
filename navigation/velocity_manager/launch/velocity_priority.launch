@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="cfg_file" default="$(find velocity_manager)/cfg/velocity_priority.yaml" />
+
+    <!--- Run velocity priority cras node -->
+    <node pkg="velocity_manager" type="velocity_priority" name="velocity_priority" output="screen" respawn="true">
+      <rosparam command="load" file="$(arg cfg_file)" />
+    </node>
+
+</launch>

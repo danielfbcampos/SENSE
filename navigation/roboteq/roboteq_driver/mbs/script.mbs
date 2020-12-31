@@ -1,0 +1,110 @@
+SCRIPT_VER=29
+MAX_CHANNELS=2
+Dim last_mode[2] as Integer
+
+' Mode values are:
+'  -1 stopped
+'  0 speed mode
+'  1 position mode
+' These correspond to the constants in roboteq_msgs/Command. The motor begins in stopped
+' mode, the setup for which is run when last_mode[0] != VAR[1].
+last_mode[0] = -127
+setcommand(_VAR, 1, -1)
+
+last_mode[1] = -127
+setcommand(_VAR, 2, -1)
+
+' Motor controller configuration. Page numbers
+' are a reference to this document:
+' https://www.roboteq.com/index.php/docman/motor-controllers-documents-and-files/documentation/user-manual/272-roboteq-controllers-user-manual-v17/file
+
+setconfig(_ECHOF, 1) ' Serial echo off (p195)
+setconfig(_RWD, 110) ' Watchdog timeout, milliseconds (p286)
+setconfig(_AMOD, 1, 1) ' Analog input 1 absolute mode
+setconfig(_AMOD, 2, 1) ' Analog input 2 absolute mode
+
+' Undervoltage/overvoltage limits (p214)
+setconfig(_OVL, 300)
+setconfig(_SXM, 50)
+setconfig(_UVL, 100)
+
+' Brake delay (ms) (p315)
+setconfig(_BKD, 0)
+
+for ch = 1 andwhile ch <= MAX_CHANNELS evaluate ch++
+  ' Encoder, speed config (p322, p332)
+  setconfig(_EMOD, ch, 0)
+  setconfig(_EPPR, ch, 0)
+  setconfig(_MXRPM, ch, 1000)
+	setconfig(_CLERD, ch, 0)
+
+  ' Current limit (p314)
+  setconfig(_ALIM, ch, 300)
+  setconfig(_ATGA, ch, 2)
+  setconfig(_ATGD, ch, 200)
+  setconfig(_ATRIG, ch, 350)
+
+  ' Max acceleration/deceleration (p327)
+  setconfig(_MAC, ch, 2000)
+  setconfig(_MDEC, ch, 3000)
+next
+
+top:
+	for ch = 1 andwhile ch <= MAX_CHANNELS evaluate ch++
+		if last_mode[ch - 1] <> getvalue(_VAR, ch) then
+			last_mode[ch - 1] = getvalue(_VAR, ch)
+
+			' Motor to be stopped (high-Z).
+			if getvalue(_VAR, ch) = -1 then
+        setconfig(_MMOD, ch, 0)
+				setcommand(_G, ch, 0)
+			end if
+
+      ' Motor in open loop mode.
+			if getvalue(_VAR, ch) = 0 then
+        setconfig(_MMOD, ch, 0)
+			end if
+
+      ' Motor in open loop mode.
+      if getvalue(_VAR, ch) = 1 then
+        setconfig(_MMOD, ch, 0)
+      end if
+		end if
+		
+		' Send feedback for this channel at 25Hz.
+		GoSub PrintFeedback
+	next
+
+	' Send status messages for the controller at 5Hz.
+	c++
+	if c = 5 then
+		GoSub PrintStatus
+		c = 0
+	end if
+
+	wait(19)
+	goto top
+
+PrintFeedback:
+	print("&f:", ch)
+	print(":", getvalue(_MOTAMPS, ch))
+	print(":", getvalue(_MOTCMD, ch))
+	print(":", getvalue(_MOTPWR, ch))
+	print(":", getvalue(_ABSPEED, ch))
+	print(":", getvalue(_ABCNTR, ch))
+	print(":", getvalue(_VOLTS, 2))
+	print(":", getvalue(_BATAMPS, ch))
+	print(":", getvalue(_ANAIN, ch))
+	print(":", getvalue(_TEMP, ch+1))
+	print("\r")
+	Return
+	
+PrintStatus:
+	print("&s:", SCRIPT_VER)
+	print(":", getvalue(_FLTFLAG))
+	print(":", getvalue(_STFLAG))
+	print(":", getvalue(_VOLTS, 1))
+	print(":", getvalue(_VOLTS, 3))
+	print(":", getvalue(_TEMP, 1))
+	print("\r")
+	Return

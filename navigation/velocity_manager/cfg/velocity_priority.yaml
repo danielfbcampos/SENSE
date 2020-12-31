@@ -1,0 +1,26 @@
+##< Subscribers
+# topic_velocity_rc_sub (string) - RC controller velocity command topic name to be subscribed. Organized internally as "topic_velocity_rc_sub". Subscribes a geometry_msgs::Twist.
+#                               >> Note: Only used when geometry_msgs::Twist::linear::z is 1
+topic_velocity_rc_sub: "/cmd_vel_rc"
+# topic_velocity_joy_sub (string) - Joy controller velocity command  topic name to be subscribed. Organized internally as "topic_velocity_joy_sub". Subscribes a geometry_msgs::Twist.
+#                                >> Note: Only used when geometry_msgs::Twist::linear::z is 1
+topic_velocity_joy_sub: "/cmd_vel_joy"
+# topic_velocity_auto_sub (string) - Auto controller velocity command  topic name to be subscribed. Organized internally as "topic_velocity_auto_sub". Subscribes a geometry_msgs::Twist.
+topic_velocity_auto_sub: "cmd_vel_auto"
+
+##< Publishers
+# topic_velocity_pub (string) - Velocity choosen topic name to be published. Organized internally as "topic_velocity_pub". Publishes a geometry_msgs::Twist.
+topic_velocity_pub: "/cmd_vel"
+
+# freq_rate (float) - Publish rate, Hz.
+freq_rate: 40
+
+# timeout_rc (float) - Maximum time in seconds allowed without rc command msg.
+timeout_rc: 0.5
+# timeout_joy (float) - Maximum time in seconds allowed without joy command msg.
+timeout_joy: 0.5
+# timeout_auto (float) - Maximum time in seconds allowed without auto command msg.
+timeout_auto: 0.5
+
+# debug (bool) - Debug structures will be displayed
+debug: false

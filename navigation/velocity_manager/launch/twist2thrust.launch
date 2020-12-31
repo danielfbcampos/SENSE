@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="cfg_file" default="$(find velocity_manager)/cfg/twist2thrust.yaml" />
+
+    <!--- Run twist2thrust cras node -->
+    <node pkg="velocity_manager" type="twist2thrust" name="twist2thrust" output="screen" respawn="true">
+      <rosparam command="load" file="$(arg cfg_file)" />
+    </node>
+
+</launch>

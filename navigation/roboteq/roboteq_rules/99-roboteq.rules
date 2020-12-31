@@ -1,0 +1,3 @@
+# Roboteq - MDC2230
+SUBSYSTEM=="tty", ATTRS{idVendor}=="20d2", ATTRS{idProduct}=="5740", ATTRS{manufacturer}=="Roboteq", MODE="0666", SYMLINK+="roboteq"
+

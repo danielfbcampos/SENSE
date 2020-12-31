@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="actuators">
+  <xacro:macro name="actuators">
+    <xacro:include filename="actuators/thruster_description/thruster.urdf.xacro"/>
+    <xacro:thruster parent="base_link" name="thruster_left">
+        <origin xyz="0.0 0.25 0.0" rpy="0.0 0.0 0.0" />
+    </xacro:thruster>
+
+    <xacro:thruster parent="base_link" name="thruster_right">
+        <origin xyz="0.0 -0.25 0.0" rpy="0.0 0.0 0.0" />
+    </xacro:thruster>
+  </xacro:macro>
+</robot>

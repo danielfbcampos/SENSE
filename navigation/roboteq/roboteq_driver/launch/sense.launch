@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="port" default="/dev/roboteq" />
+
+  <arg name="baud" default="115200" />
+  <arg name="max_rpm" default="1000" />
+
+  <arg name="dual" default="true" />
+  <arg name="respawn" default="true" />
+
+  <node pkg="roboteq_driver" type="driver_node" name="roboteq_driver" output="screen" respawn="$(arg respawn)">
+    <param name="port" value="$(arg port)" />
+    <param name="baud" value="$(arg baud)" />
+    <param name="max_rpm" value="$(arg max_rpm)" />
+
+    <rosparam  if="$(arg dual)">
+      channels: ['left', 'right']
+    </rosparam>
+  </node>
+</launch>

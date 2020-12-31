@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="sense">
+  <xacro:arg name="sensors" default="sensors.urdf.xacro"/>
+  <xacro:arg name="actuators" default="actuators.urdf.xacro"/>
+
+  <link name = "base_link">
+    <visual>
+      <origin xyz="0.470 0.0 -0.35" rpy="-3.14159265359 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://transforms/models/sense/mesh/sense.STL"/>
+      </geometry>
+    </visual>
+
+    <collision name="body">
+      <origin xyz="0.470 0.0 -0.35" rpy="-3.14159265359 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://transforms/models/sense/mesh/sense.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <xacro:include filename="$(arg sensors)"/>
+  <xacro:sensors/>
+
+  <xacro:include filename="$(arg actuators)"/>
+  <xacro:actuators/>
+</robot>

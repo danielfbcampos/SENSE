@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />    
+  <include file="$(find mynteye_wrapper_d)/launch/mynteye.launch" /> 
+</launch>

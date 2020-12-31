@@ -1,0 +1,22 @@
+##< Publishers
+# topic_cmd_vel_rc (string) - Velocity command topic name to be published. Organized internally as "topic_cmd_vel_rc". Publishes a geometry_msgs::Twist.
+topic_cmd_vel_rc: "/cmd_vel_rc"
+# topic_cmd_safety_stop (string) - Safety state topic name to be published. Organized internally as "topic_cmd_safety_stop". Publishes a std_msgs::Bool.
+topic_cmd_safety_stop: "/safety_stop"
+
+###
+# vel_lin_max (float) - Maximum linear velocity (m/s).
+vel_lin_max: 1.0
+# vel_lin_min (float) - Minimum linear velocity (m/s).
+vel_lin_min: -1.0
+# vel_ang_max (float) - Maximum angular velocity (rad/s).
+vel_ang_max: 0.2
+# vel_ang_min (float) - Minimum angular velocity (rad/s).
+vel_ang_min: -0.2
+
+# port (string) - Arduino for RC port.
+port: "/dev/rcnano"
+
+# calib_file (string) - Last rc calibration file location.
+calib_file: "/home/odroid/calib.txt"
+

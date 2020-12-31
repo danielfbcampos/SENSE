@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="sensors">
+  <xacro:macro name="sensors">
+    <xacro:include filename="sensors/mynteye_description/mynteye.urdf.xacro"/>
+    <xacro:mynteye parent="base_link">
+        <origin xyz="0.99 0.065 0.675" rpy="0.0 0.0 0.0" />
+    </xacro:mynteye>
+
+    <xacro:include filename="sensors/velodyne_description/velodyne.urdf.xacro"/>
+<!--    <xacro:VLP-16 parent="mynteye_left_color_frame">
+      <origin xyz = "0.51635 0.51906 0.0319555"
+        rpy = "-2.7519624 -1.372071 -1.9570791 "/>
+    </xacro:VLP-16 >-->
+    <xacro:VLP-16 parent="base_link">
+      <origin xyz = "0.930 0 0.696"
+        rpy = "0.0 0.0 0.0"/>
+    </xacro:VLP-16 >
+
+    <xacro:include filename="sensors/deltat_description/deltat.urdf.xacro"/>
+    <xacro:deltat parent="base_link">
+        <origin xyz="0.45 0.0 -0.5" rpy="0.0 1.57079632679 0.0" />
+    </xacro:deltat>
+
+    <xacro:include filename="sensors/swiftnav_description/swiftnav.urdf.xacro"/>
+    <xacro:swiftnav parent="base_link">
+        <origin xyz="0.8 0.095 1.085" rpy="0.0 0.0 0.0" />
+    </xacro:swiftnav>
+
+    <xacro:include filename="sensors/imu_description/imu.urdf.xacro"/>
+    <xacro:imu parent="base_link" name="imu">
+        <origin xyz="0.982 0.172 0.09" rpy="0.0 0.0 -1.38154365" />
+    </xacro:imu>
+
+    <xacro:imu parent="base_link" name="imu_nav_box">
+        <origin xyz = "0.48 -0.17 0.09" rpy = "0.0 0.0 0.0" />
+    </xacro:imu>
+
+    <xacro:include filename="sensors/gps_description/gps.urdf.xacro"/>
+    <xacro:gps parent="base_link" name="ublox_gps">
+        <origin xyz="0.27 -0.20 0.115" rpy="0.0 0.0 0.0" />
+    </xacro:gps>
+  </xacro:macro>
+</robot>

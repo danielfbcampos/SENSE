@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="thruster">
+  <xacro:macro name="thruster" params="*origin parent:=base_link name:=thruster_left">
+
+    <joint name="${name}_engine_mount_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_engine_link"/>
+    </joint>
+
+    <link name="${name}_engine_link"/>
+
+    <joint name="${name}_propeller_joint" type="fixed" >
+      <origin xyz="-0.25 0 -0.63" rpy="0 0 0" />
+      <parent link="${name}_engine_link" />
+      <child link="${name}_propeller"/>
+    </joint>
+
+    <link name="${name}_propeller"/>
+  </xacro:macro>
+</robot>

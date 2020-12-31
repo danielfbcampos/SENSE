@@ -1,0 +1,33 @@
+##< Subscribers
+# topic_sub_cmd (string) - Velocity command topic name to be subscribed. Organized internally as "topic_sub_cmd". Subscribes a geometry_msgs::Twist.
+topic_sub_cmd: "/cmd_vel"
+# topic_sub_safety (string) - Safety stop topic name to be subscribed. Organized internally as "topic_sub_safety". Subscribes a std_msgs::bool.
+topic_sub_safety: "/safety_stop"
+
+##< Publishers
+# topic_pub_cmd_left (string) - Left thruster topic name to be published. Organized internally as "topic_pub_cmd_left". Publishes a roboteq_msgs::Command or std_msgs::Float32 dependio on use_sim_time parameter.
+topic_pub_cmd_left: "/left/cmd"
+# topic_pub_cmd_right (string) - Right thruster topic name to be published. Organized internally as "topic_pub_cmd_right". Publishes a roboteq_msgs::Command or std_msgs::Float32 dependio on use_sim_time parameter.
+topic_pub_cmd_right: "/right/cmd"
+
+
+# rate (float) - Cycle execution and publish frequency (Hz)
+rate: 40.0
+# timeout (float) - Maximum time in seconds without msgs being recieved allowed, after that sends velocity 0.
+timeout: 0.5
+
+# scale_rpm (float) - Value between [0,1] to limit the rpm reference to be sent.
+scale_rpm: 1.0 # 0.5 #1.0 - simulation
+# linear_scaling (float) - Linear velocity scale factor
+linear_scaling: 1.0 # 0.5 #0.3 - simulation
+# angular_scaling (float) - Angular velocity scale factor
+angular_scaling: 1.0 #8.0 - simulation
+# max_speed_linear (float) - Maximum linear velocity, m/s
+max_speed_linear: 1.0 #0.5 #2.3 - simulation
+# max_speed_angular (float) - Maximum angular velocity, rad/s
+max_speed_angular: 1.0 #0.2 #0.3751 - simulation
+# max_sim_vel (float) - Maximum wheel velocity in simulation, m/s
+max_sim_vel: 3.0
+
+# debug (bool) - Debug structures will be displayed
+debug: false

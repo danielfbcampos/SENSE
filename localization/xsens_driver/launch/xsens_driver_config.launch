@@ -1,0 +1,11 @@
+<launch>
+   
+
+    <!-- node -->
+	<node pkg="xsens_driver" type="mtdevice.py" name="xsens_driver" args="$-c oe aa wr vv">
+		
+	</node>
+
+ 
+
+</launch>
