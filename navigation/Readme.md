@@ -20,7 +20,6 @@ Navigation module software repository of INESC TEC Centre for Robotics and Auton
 ````
     sudo apt update
     sudo apt install ros-$ROS_DISTRO-robot-localization  ros-$ROS_DISTRO-serial -y
-
 ````
    * Add the navigation folder to your catkin workspace src folder
    * Compile catkin workspace
@@ -28,7 +27,12 @@ Navigation module software repository of INESC TEC Centre for Robotics and Auton
 ````
     cd catkin_ws       # your catkin workspace
     catkin_make
+````
 
+   * Run with:
+
+````
+    roslaunch launch_nav navigation.launch
 ````
 
 ### Who do I talk to? ###

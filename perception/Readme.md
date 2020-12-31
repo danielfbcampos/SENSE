@@ -21,7 +21,6 @@ Perception module software repository of INESC TEC Centre for Robotics and Auton
    cd MYNT-EYE-D-SDK
    make init
    make all
-
 ````
 
    * Configure ROS environment: http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
@@ -30,7 +29,6 @@ Perception module software repository of INESC TEC Centre for Robotics and Auton
 ````
     sudo apt update
     sudo apt install libpcap-dev -y
-
 ````
 
    * Add the perception folder to your catkin workspace src folder
@@ -39,7 +37,12 @@ Perception module software repository of INESC TEC Centre for Robotics and Auton
 ````
     cd catkin_ws       # your catkin workspace
     catkin_make
+````
 
+   * Run with:
+
+````
+    roslaunch launch_perc perc.launch
 ````
 
 ### Who do I talk to? ###

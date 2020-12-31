@@ -24,7 +24,6 @@ Localization module software repository of INESC TEC Centre for Robotics and Aut
    cmake ../
    make
    sudo make install   # install headers and libraries into /usr/local
-
 ````
 
    * Configure ROS environment: http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
@@ -33,7 +32,6 @@ Localization module software repository of INESC TEC Centre for Robotics and Aut
 ````
     sudo apt update
     sudo apt install ros-$ROS_DISTRO-robot-localization -y
-
 ````
    * Add the localization folder to your catkin workspace src folder
    * Compile catkin workspace
@@ -41,7 +39,12 @@ Localization module software repository of INESC TEC Centre for Robotics and Aut
 ````
     cd catkin_ws       # your catkin workspace
     catkin_make
+````
 
+   * Run with:
+
+````
+    roslaunch launch_loc loc_box.launch
 ````
 
 ### Who do I talk to? ###
