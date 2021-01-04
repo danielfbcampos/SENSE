@@ -16,7 +16,7 @@ Perception module software repository of INESC TEC Centre for Robotics and Auton
    * Build and install Mynt Eye D sdk (https://mynt-eye-d-sdk.readthedocs.io/en/latest/)
 
 ````
-   cd mysrc       # cd to a directory where you will download and build libsbp (outside catkin workspace)
+   cd mysrc       # cd to a directory where you will download and build mynt eye d sdk (outside catkin workspace)
    git clone https://github.com/slightech/MYNT-EYE-D-SDK.git
    cd MYNT-EYE-D-SDK
    make init
