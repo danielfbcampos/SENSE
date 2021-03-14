@@ -5,7 +5,7 @@
   <description>The transforms package</description>
 
   <maintainer email="daniel.f.campos@inesctec.pt">Daniel Campos</maintainer>
-  <license>CC BY-SA 4.0</license>
+  <license>GPLv3</license>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>

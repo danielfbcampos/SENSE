@@ -2,13 +2,13 @@
   <name>rc</name>
   <version>1.2.0</version>
   <description>
-    ddd
+    RC Controller
   </description>
 
 
   <maintainer email="renato.j.silva@inesctec.pt">Renato Silva</maintainer>
 
-  <license>BSD</license>
+  <license>GPLv3</license>
 
   <buildtool_depend>catkin</buildtool_depend>
 
